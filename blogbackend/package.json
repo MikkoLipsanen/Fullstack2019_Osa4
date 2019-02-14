@@ -1,0 +1,33 @@
+{
+  "name": "blogbackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikkoLipsanen/Fullstack2019_Osa4.git"
+  },
+  "author": "Mikko Lipsanen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikkoLipsanen/Fullstack2019_Osa4/issues"
+  },
+  "homepage": "https://github.com/MikkoLipsanen/Fullstack2019_Osa4#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.12",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "nodemon": "^1.18.10"
+  }
+}
