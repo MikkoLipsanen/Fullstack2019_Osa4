@@ -7,7 +7,7 @@ const blogs = [
     author: "Michael Chan",
     url: "https://reactpatterns.com/",
     likes: 7,
-  __v: 0
+    _v: 0
   },
   {
     _id: "5a422aa71b54a676234d17f8",
@@ -62,6 +62,14 @@ const listWithOneBlog = [
   }
 ]
   
+const newBlogs = blogs.map(blog => 
+  ({
+    title: blog.title,
+    author: blog.author,
+    likes: blog.likes
+  })
+)
+
 const emptyList = []
   
 test('dummy returns one', () => {
@@ -83,5 +91,22 @@ describe('total likes', () => {
   test('of a list with several items is calculated correctly', () => {
     const result = listHelper.totalLikes(blogs)
     expect(result).toBe(36)
+  })
+})
+
+describe('favorite blog', () => {
+  test('when list has only one blog returns that', () => {
+    const result = listHelper.favoriteBlog(listWithOneBlog)
+    expect(result).toEqual(newBlogs[1])
+  })
+
+  test('when list is empty returns null', () => {
+    const result = listHelper.favoriteBlog(emptyList)
+    expect(result).toEqual(null)
+  })
+
+  test('when list has several items returns the right one', () => {
+    const result = listHelper.favoriteBlog(blogs)
+    expect(result).toEqual(newBlogs[2])
   })
 })
