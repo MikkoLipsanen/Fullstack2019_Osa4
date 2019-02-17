@@ -3,14 +3,16 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const blogsRouter = require('./controllers/blogs')
+const usersRouter = require('./controllers/users')
+const middleware = require('./utils/middleware')
 const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const logger = require('./utils/logger')
 
-logger.info('connecting to', config.mongoUrl, 'port', config.port)
+logger.info('connecting to', config.MONGODB_URI, 'port', config.PORT)
 
-mongoose.connect(config.mongoUrl, { useNewUrlParser: true })
+mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
     logger.info('connected to MongoDB')
   })
@@ -21,7 +23,11 @@ mongoose.connect(config.mongoUrl, { useNewUrlParser: true })
 app.use(bodyParser.json())
 app.use(morgan('tiny'))
 app.use(cors())
+app.use(middleware.requestLogger)
 
 app.use('/api/blogs', blogsRouter)
+app.use('/api/users', usersRouter)
+
+app.use(middleware.errorHandler)
 
 module.exports = app
